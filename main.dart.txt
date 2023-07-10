@@ -1,0 +1,754 @@
+// ignore_for_file: library_private_types_in_public_api
+
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:pinput/pinput.dart';
+//import 'package:task_liveasy/main.dart';
+
+StreamController<int> streamController = StreamController<int>();
+
+void main() => runApp(const Liveasy());
+
+class Liveasy extends StatelessWidget {
+  const Liveasy({super.key});
+
+  @override
+
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+
+      debugShowCheckedModeBanner: false,
+      title: 'Liveasy',
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  _HomeScreenState createState() {
+    return _HomeScreenState();
+  }
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 1), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const LanguagePage()));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.greenAccent,
+          image: DecorationImage(
+            image: AssetImage('assets/logo.jpeg'),
+            fit: BoxFit.scaleDown,
+          ),
+        ),
+        child: const Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class LanguagePage extends StatelessWidget {
+  const LanguagePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Select Language',
+      home: Scaffold(
+
+        body: Column(children: [
+          Expanded( flex: 4,
+            child: Container(
+            width: 500,
+            height: 10,
+            margin: const EdgeInsets.only( left: 260, bottom: 50, top: 50),
+          decoration: const BoxDecoration(
+            color: Colors.grey,
+              image: DecorationImage(
+               alignment: Alignment.topCenter,
+                image: AssetImage('assets/welcom.jpeg'),
+
+              )
+          ),
+          child: ListView(
+              children: [
+                Container(
+                  width: 150,
+                  height: 50,
+                  margin: const EdgeInsets.only(left: 189, top: 195),
+
+                    child: const Text(
+                      'Welcome',
+                      style: TextStyle(
+
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                Container(
+                  width: 150,
+                  height: 50,
+                  margin: const EdgeInsets.only(left: 175, top: 0.1),
+                  child: const Text(
+                    'Select Language',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+          Expanded( flex: 5,
+            child: Row(
+              children: [
+                Expanded( flex: 5,
+                    child: Container(
+                        width: 1,
+                        height: 30,
+                        margin: const EdgeInsets.only(left: 150, top: 0.1, right: 0.7),
+                        decoration:BoxDecoration (
+                            color: Colors.brown,
+                            border: Border.all(color: Colors.black, width: 2 )
+                        ) ,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context, MaterialPageRoute(builder: (context) => const LanguagePage()));
+                            },
+                            child: const Row(children: [
+                              Center(
+                                child: Text(
+                                  'English',
+                                  style: TextStyle(
+
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                            )
+
+                        )
+                    ),
+                ),
+                Expanded( flex: 5,
+                  child: Container(
+                      width: 10,
+                      height: 30,
+                      margin: const EdgeInsets.only(left: 5, top: 0.1, right: 150),
+                      decoration:BoxDecoration (
+                          color: Colors.green,
+                          border: Border.all(color: Colors.black, width: 2 )
+                      ) ,
+                      child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                                context, MaterialPageRoute(builder: (context) => const Hpage()));
+                          },
+                          child: const Row(children: [
+                            Center(
+                              child: Text(
+                                'Hindi',
+                                style: TextStyle(
+
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ],
+                          )
+
+                      )
+                  ),
+                ),
+
+]
+            )
+          ),
+
+                Container(foregroundDecoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(40)),
+                    width: 200,
+                    height: 30,
+                    margin: const EdgeInsets.only(left: 150, right: 150, bottom: 100, top: 10),
+
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context, MaterialPageRoute(builder: (context) => const EnterPhoneNumber()));
+                        },
+                        child: const Row(children: [
+                          Center(
+                            child: Text(
+                              'Get Started',
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ],
+                        )
+
+                    )
+                ),
+          ]
+          )
+        ),
+        ),
+
+
+    ]
+        )
+
+      ),
+    );
+  }
+}
+
+
+class Hpage extends StatelessWidget {
+  const Hpage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Select Language',
+      home: Scaffold(
+
+          body: Column(children: [
+            Expanded( flex: 4,
+              child: Container(
+                  width: 500,
+                  height: 10,
+                  margin: const EdgeInsets.only( left: 260, bottom: 50, top: 50),
+                  decoration: const BoxDecoration(
+                      color: Colors.grey,
+                      image: DecorationImage(
+                        alignment: Alignment.topCenter,
+                        image: AssetImage('assets/logo.jpeg'),
+
+                      )
+                  ),
+                  child: ListView(
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 50,
+                          margin: const EdgeInsets.only(left: 179, top: 195),
+
+                          child: const Text(
+                            'आपका स्वागत है',
+                            style: TextStyle(
+
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 150,
+                          height: 50,
+                          margin: const EdgeInsets.only(left: 175, top: 0.1),
+                          child: const Text(
+                            'अपनी भाषा का चयन करें',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                        Expanded( flex: 5,
+                            child: Row(
+                                children: [
+                                  Expanded( flex: 5,
+                                    child: Container(
+                                        width: 1,
+                                        height: 30,
+                                        margin: const EdgeInsets.only(left: 150, top: 0.1, right: 0.7),
+                                        decoration:BoxDecoration (
+                                            color: Colors.brown,
+                                            border: Border.all(color: Colors.black, width: 2 )
+                                        ) ,
+                                        child: ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.pushReplacement(
+                                                  context, MaterialPageRoute(builder: (context) => const LanguagePage()));
+                                            },
+                                            child: const Row(children: [
+                                              Center(
+                                                child: Text(
+                                                  'अंग्रेज़ी',
+                                                  style: TextStyle(
+
+                                                    fontSize: 18,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                            )
+
+                                        )
+                                    ),
+                                  ),
+                                  Expanded( flex: 5,
+                                    child: Container(
+                                        width: 10,
+                                        height: 30,
+                                        margin: const EdgeInsets.only(left: 5, top: 0.1, right: 150),
+                                        decoration:BoxDecoration (
+                                            color: Colors.green,
+                                            border: Border.all(color: Colors.black, width: 2 )
+                                        ) ,
+                                        child: ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.pushReplacement(
+                                                  context, MaterialPageRoute(builder: (context) => const Hpage()));
+                                            },
+                                            child: const Row(children: [
+                                              Center(
+                                                child: Text(
+                                                  'हिंदी',
+                                                  style: TextStyle(
+
+                                                    fontSize: 18,
+                                                    color: Colors.black,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                            )
+
+                                        )
+                                    ),
+                                  ),
+
+                                ]
+                            )
+                        ),
+
+                        Container(foregroundDecoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(40)),
+                            width: 200,
+                            height: 30,
+                            margin: const EdgeInsets.only(left: 150, right: 150, bottom: 100, top: 10),
+
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pushReplacement(
+                                      context, MaterialPageRoute(builder: (context) => const EnterPhoneNumber()));
+                                },
+                                child: const Row(children: [
+                                  Center(
+                                    child: Text(
+                                      'शुरू करें',
+                                      style: TextStyle(
+
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                                )
+
+                            )
+                        ),
+                      ]
+                  )
+              ),
+            ),
+
+
+          ]
+          )
+
+      ),
+    );
+  }
+}
+
+
+class EnterPhoneNumber extends StatefulWidget {
+   const EnterPhoneNumber({super.key});
+
+
+  @override
+  State<EnterPhoneNumber> createState() => _EnterPhoneNumberState();
+}
+
+class _EnterPhoneNumberState extends State<EnterPhoneNumber> {
+  TextEditingController countrycode = TextEditingController() ;
+  final _textController = TextEditingController();
+  String userPost = '';
+
+  @override
+  void initState(){
+    countrycode.text="+91";
+    super.initState();
+  }
+
+  @override
+
+  Widget build(BuildContext context) {
+    var size = MediaQuery
+        .of(context)
+        .size;
+
+    return MaterialApp(
+        debugShowCheckedModeBanner: false,
+
+        title: 'OTP',
+        home: Scaffold(
+
+            body:
+
+            Stack(children: [
+              Container(
+                  width: size.width * 1,
+                  height: size.height * .6,
+
+                  decoration: const BoxDecoration(
+                      color: Colors.grey,
+                      image: DecorationImage(
+                        alignment: Alignment.bottomLeft,
+                        image: AssetImage('assets/logo.jpeg'),
+                      )
+
+                  ),
+                  child: ListView(
+                      children: [
+                        Container(
+                          width: 150,
+                          height: 90,
+                          margin: const EdgeInsets.only(left: 229, top: 300),
+
+                          child: const Text(
+                            'Liveasy',
+                            style: TextStyle(
+
+                              fontSize: 56,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ]
+                  )
+              ),
+              Container(
+                  width: size.width * 1,
+                  height: size.height * .5,
+                  margin: const EdgeInsets.only(top: 365),
+
+
+                  decoration: const BoxDecoration(
+                      color: Colors.tealAccent,
+                    //  image: DecorationImage(
+                    //    alignment: Alignment.bottomLeft,
+                    //image: AssetImage('assets/logo.jpeg'),
+                    // )
+
+                  ),
+                  child: ListView(
+                      children: [
+                        Container(
+
+                          height: 40,
+                          margin: const EdgeInsets.only(top: 10, left: 600, right: 400),
+
+                          child: const Text(
+                            'Welcome to Liveasy',
+                            style: TextStyle(
+
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+
+                        Container(
+
+                          height: 40,
+                          margin: const EdgeInsets.only(left: 550, right: 200),
+
+                          child: const Text(
+                            'A 6-digit OTP will be sent via SMS to verify your number.',
+                            style: TextStyle(
+
+                              fontSize: 12,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+
+                      Container(
+
+                        height: 55,
+                        margin: const EdgeInsets.only(left: 600, right: 580),
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 1, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(40),),
+                          child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 10,
+                          ),
+                        SizedBox(
+                        width: 40,
+                          child: TextField(
+                            controller: countrycode ,
+                            decoration: const InputDecoration(border: InputBorder.none),
+                          ),
+                        ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Text(
+                              "|",
+                              style: TextStyle(fontSize: 33, color: Colors.grey)
+                          ),
+
+
+                          Expanded(
+                            child: TextField(
+                              controller: _textController,
+                            decoration: const InputDecoration(border: InputBorder.none,
+                                hintText: "Moblie Number"),
+                            )
+                            ),
+
+                          ]
+
+                      ),
+
+                        ),
+                        Container(
+                            margin: const EdgeInsets.only(top: 10, left: 450, right: 300),
+                            child: Row(
+                              children: [
+
+                                SizedBox(
+                                height: 40,
+                                width: 500,
+                                child: ElevatedButton(onPressed:  (){
+                                  Navigator.pushReplacement(
+                                      context, MaterialPageRoute(builder: (context) => const Otp()));
+                                },
+                                    style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(45)),
+                                    ),
+                                child: const Text('Send the code'),
+                                ),
+                            ),
+                        ]
+                  )
+              )
+                      ]
+
+
+                  )
+              ),
+            ]
+            )
+        )
+    );
+  }
+}
+
+
+class Otp extends StatelessWidget {
+   const Otp({super.key});
+
+
+  @override
+
+    Widget build(BuildContext context) {
+    var size = MediaQuery
+        .of(context)
+        .size;
+
+    final defaultPinTheme = PinTheme(
+      width: 56,
+      height: 56,
+      textStyle: const TextStyle(fontSize: 20, color: Color.fromRGBO(100, 160, 187, 1), fontWeight: FontWeight.w600),
+      decoration: BoxDecoration(
+
+        border: Border.all(color: const Color.fromRGBO(255, 0, 0, 1)),
+        borderRadius: BorderRadius.circular(20),
+      ),
+    );
+
+    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
+      border: Border.all(color: const Color.fromRGBO(0, 128, 0, 1)),
+      borderRadius: BorderRadius.circular(8),
+    );
+
+    final submittedPinTheme = defaultPinTheme.copyWith(
+      decoration: defaultPinTheme.decoration?.copyWith(
+        color: const Color.fromRGBO(0, 0, 128, 1),
+      ),
+    );
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Select Language',
+      home: Scaffold(
+
+          body:
+        Stack(children: [
+        Container(
+        width: size.width * 1,
+        height: size.height * .4,
+
+        decoration: const BoxDecoration(
+        color: Colors.grey,
+        image: DecorationImage(
+        alignment: Alignment.bottomLeft,
+        image: AssetImage('assets/logo.jpeg'),
+    )
+
+    ),
+    child: ListView(
+    children: [
+    Container(
+    width: 150,
+    height: 65,
+    margin: const EdgeInsets.only(left: 229, top: 180),
+
+    child: const Text(
+    'Liveasy',
+    style: TextStyle(
+
+    fontSize: 56,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+    ),
+    ),
+    ),
+    ]
+    )
+    ),
+    Container(
+
+    width: size.width * 1,
+    height: size.height * .6,
+    margin: const EdgeInsets.only(top: 260),
+
+
+    decoration: const BoxDecoration(
+    color: Colors.tealAccent,
+    //  image: DecorationImage(
+    //    alignment: Alignment.bottomLeft,
+    //image: AssetImage('assets/logo.jpeg'),
+    // )
+
+    ),
+    child: ListView(
+    children: [
+    Container(
+
+    height: 35,
+    margin: const EdgeInsets.only(top: 10, left: 600, right: 400),
+
+    child: const Text(
+    'OTP Verification',
+    style: TextStyle(
+
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+    ),
+    ),
+    ),
+
+    Container(
+
+    height: 40,
+    margin: const EdgeInsets.only(left: 550, right: 200),
+
+    child: Row(
+      children: [
+        const Text(
+          "OTP has been sent",
+          style: TextStyle(
+
+            fontSize: 12,
+            color: Colors.black,
+          ),
+        ),
+        TextButton(onPressed:  (){
+          Navigator.pushReplacement( context, MaterialPageRoute(builder: (context) => const EnterPhoneNumber()));
+
+        }, child: const Text('change')
+
+          ),
+      ]
+    )
+
+    ),
+    Container(
+
+    height: 90,
+    margin: const EdgeInsets.only(left: 490, right: 380, top: 1),
+   // decoration: BoxDecoration(
+   // border: Border.all(width: 1, color: Colors.grey),
+   // borderRadius: BorderRadius.circular(40),),
+    child: Row(
+    children: [
+
+        Pinput(
+          length: 6,
+
+          focusedPinTheme: focusedPinTheme,
+          submittedPinTheme: submittedPinTheme,
+          validator: (s) {
+            return s == '2222' ? null : 'Pin is incorrect';
+          },
+          pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+          showCursor: true,
+          // ignore: avoid_print
+          onCompleted: (pin) => print(pin),
+        )
+
+      ]
+    )
+    )
+    ]
+
+      ),
+      )
+          ]
+      )
+    )
+    );
+  }
+}
+
+
+
